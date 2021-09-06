@@ -66,8 +66,14 @@ app.post("/newbench", async (req, res) => {
 //get's
 
 app.get("/squat", async (req, res) => {
-  const dbres = await client.query("select squat from onerm WHERE username ='sebwiggins'");
-  res.json(dbres.rows);
+  try {
+    const dbres = await client.query("select squat from onerm WHERE username ='sebwiggins'");
+    res.json(dbres.rows); 
+  } catch (error) {
+    console.error(error)
+    return res.status(400).send(error)
+  }
+
 });
 
 app.get("/deadlift", async (req, res) => {
