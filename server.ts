@@ -67,6 +67,8 @@ app.post("/newbench", async (req, res) => {
 
 app.get("/squat", async (req, res) => {
   try {
+    console.log("connecting to db")
+    console.log(dbConfig)
     const dbres = await client.query("select squat from onerm WHERE username ='sebwiggins'");
     res.json(dbres.rows); 
   } catch (error) {
